@@ -89,19 +89,26 @@ console.log(lastCar[0], lastCar[1]);
 // and log the results in the console
 let carModels = [];
 
-for (var i=0; i < inventory.length; i++){
-    carModels[i]= inventory[i].car_model;
-}
-sortedCarModels = carModels.sort();
+var sortedCars = inventory.sort(
+    function(i, j) {
+        if (i.car_model.toLowerCase() < j.car_model.toLowerCase()) return -1;
+        else if (i.car_model.toLowerCase() > j.car_model.toLowerCase()) return 1;
+        else return 0;
+    }
+);
 
-console.log(sortedCarModels);
+for (var i=0; i < inventory.length; i++){
+    carModels.push(inventory[i].car_model);
+}
+
+console.log(carModels);
 
 // ==== Challenge 4 ====
 // The accounting team needs all the years from every car on the lot. Create a new array from the dealer data containing only the car
 // years and log the result in the console.
 let carYears = [];
 for (var i=0; i < inventory.length; i++){
-    carYears[i]= inventory[i].car_year;
+    carYears.push(inventory[i].car_year);
 }
 
 console.log(carYears);
@@ -109,7 +116,7 @@ console.log(carYears);
 // ==== Challenge 5 ====
 // The car lot manager needs to find out how many cars are older than the year 2000. Using the carYears array you just created, find out
 // how many cars were made before the year 2000 by populating the array oldCars and logging it's length.
-let oldCars =[];
+let oldCars = [];
 for (var i=0; i < inventory.length; i++){
     if (inventory[i].car_year < 2000){
         oldCars.push(inventory[i]);
@@ -128,7 +135,7 @@ for (var i=0; i < inventory.length; i++){
     }
 }
 
-var results=JSON.stringify(BMWAndAudi)
+var results = JSON.stringify(BMWAndAudi)
 
 console.log(results);
 
